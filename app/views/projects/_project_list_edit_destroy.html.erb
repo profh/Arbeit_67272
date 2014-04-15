@@ -1,0 +1,16 @@
+<div class="form-actions">
+  <%= link_to(projects_path, class: 'button radius') do %>
+    <i class="fa fa-list"></i>
+    &nbsp;Display All Projects
+  <% end %>
+  &nbsp;&nbsp;
+  <%= link_to(edit_project_path(@project), class: 'button radius') do %>
+    <i class="fa fa-pencil"></i>
+    &nbsp;<%= "Edit #{@project.name}" %>
+  <% end %>
+  &nbsp;&nbsp;
+  <%= link_to(project_path(@project), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{@project.name}"}, class: 'button radius alert') do %>
+    <i class="fa fa-trash-o"></i>
+    &nbsp;<%= "Delete #{@project.name}" %>
+  <% end %>
+</div>

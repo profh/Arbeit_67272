@@ -1,0 +1,10 @@
+<div class="panel clearfix">
+	<h3>Past Projects</h3>
+	<ul>
+		<% @past_projects.each do |project| %>
+			<% if can? :read, project %>
+				<li><%= link_to project.name, project_path(project) %>&nbsp;&nbsp;(end: <%= project.end_date.strftime("%b %Y") %>)</li>
+			<% end %>
+		<% end %>
+	</ul>
+</div>

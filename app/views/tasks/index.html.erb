@@ -1,0 +1,19 @@
+<div class="row">
+	<div class="small-8 columns">
+		<% if @pending_tasks.empty? %>
+			<h3>No Pending Tasks</h3>
+		<% else %>
+			<%= render :partial => "pending_tasks" %>
+		<% end %>
+	</div>
+
+	<div class="small-4 columns">
+		<%= render :partial => "completed_tasks" unless @completed_tasks.empty? %>
+	</div>
+</div>
+
+<!-- Add a button for new projects -->
+<%= link_to(new_task_path, class: "button radius") do %>
+  <i class="fa fa-plus"></i>
+  &nbsp;Add a New Task
+<% end %>

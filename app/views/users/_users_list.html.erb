@@ -1,0 +1,29 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Current Projects</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.name, user_path(user) %></td>
+        <td><%= mail_to user.email, user.email %></td>
+        <td>
+          <%= user.projects.current.map(&:name).join(', ') %>
+        </td>
+        <td>
+          <%= link_to(edit_user_path(user), class: 'button tiny radius') do %>
+            <i class="fa fa-pencil"></i>
+            &nbsp;Edit
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @users, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+<br />

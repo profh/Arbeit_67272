@@ -1,0 +1,16 @@
+<div class="form-actions">
+  <%= link_to(tasks_path, class: 'button radius') do %>
+    <i class="fa fa-list"></i>
+    &nbsp;Display All Tasks
+  <% end %>
+  &nbsp;&nbsp;
+  <%= link_to(edit_task_path(@task), class: 'button radius') do %>
+    <i class="fa fa-pencil"></i>
+    &nbsp;<%= "Edit #{@task.name}" %>
+  <% end %>
+  &nbsp;&nbsp;
+  <%= link_to(task_path(@task), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{@task.name}"}, class: 'button radius alert') do %>
+    <i class="fa fa-trash-o"></i>
+    &nbsp;<%= "Delete #{@task.name}" %>
+  <% end %>
+</div>

@@ -1,0 +1,16 @@
+<div class="form-actions">
+  <%= link_to(assignments_path, class: 'button radius') do %>
+    <i class="fa fa-list"></i>
+    &nbsp;Display All Assignments
+  <% end %>
+  &nbsp;&nbsp;
+  <%= link_to(edit_assignment_path(@assignment), class: 'button radius') do %>
+    <i class="fa fa-pencil"></i>
+    &nbsp;<%= "Edit Assignment" %>
+  <% end %>
+  &nbsp;&nbsp;
+  <%= link_to(project_path(@assignment), method: 'delete', data: {confirm: "Are you sure you want to permanently delete this assignment"}, class: 'button radius alert') do %>
+    <i class="fa fa-trash-o"></i>
+    &nbsp;<%= "Delete Assignment" %>
+  <% end %>
+</div>

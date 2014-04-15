@@ -1,0 +1,10 @@
+<div class="panel clearfix">
+	<h3>Recently Completed</h3>
+	<ul>
+		<% @completed_tasks.each do |task| %>
+			<% if can? :read, task %>
+				<li class="well"><%= link_to task.name, task_path(task) %>&nbsp;&nbsp;<span class="note">(<%= task.project.name %> - <%= task.updated_at.strftime("%m/%d") %>)</span></li>
+			<% end %>
+		<% end %>
+	</ul>
+</div>

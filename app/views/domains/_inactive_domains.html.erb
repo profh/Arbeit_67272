@@ -1,0 +1,10 @@
+<div class="panel clearfix">
+  <h3>Inactive Domains</h3>
+  <ul>
+    <% @inactive_domains.each do |domain| %>
+      <% if can? :read, domain %>
+        <li><%= link_to domain.name, domain_path(domain) %></li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

@@ -1,0 +1,27 @@
+
+<div class="row">
+  <div class="small-7 columns">
+    <h3>
+      Assignment
+    </h3><br />
+    <p>
+      <b>Project</b>: <%= link_to @assignment.project.name, project_path(@assignment.project) %>
+    </p>
+    <p>
+      <b>User</b>: <%= link_to @assignment.user.proper_name, user_path(@assignment.user) %>
+    </p>
+
+    <p>
+      <b>Active</b>: <%= @assignment.active ? "Yes" : "No" %>
+    </p>
+  </div>
+  <div class="small-5 columns">
+    &nbsp;
+  </div>
+</div>
+
+<!-- Add buttons to list all, edit project or destroy assignment -->
+<%= render :partial => "assignment_list_edit_destroy" %>
+
+
+

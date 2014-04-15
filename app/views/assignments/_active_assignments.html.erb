@@ -1,0 +1,32 @@
+<% if @active_assignments.empty? %>
+	<p><em>There are no active assignments at this time.</em></p>
+<% else %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Project</th>
+			<th>Person</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @active_assignments.each do |assignment| %>
+      <tr>
+        <td><%= link_to assignment.project.name, project_path(assignment.project) %></td>
+        <td><%= link_to assignment.user.name, user_path(assignment.user) %></td>
+        <td>
+          <%= link_to(edit_assignment_path(assignment, status: 'deactivate_asgn'), class: 'button tiny radius secondary') do %>
+            <i class="fa fa-user"></i>
+            &nbsp;Make Inactive
+          <% end %>
+          <%= link_to(assignment_path(assignment), class: 'button tiny radius alert', method: 'delete', data: {confirm: "Are you sure you want to permanently delete this assignment"}) do %>
+            <i class="fa fa-trash-o"></i>
+            &nbsp;Remove
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @active_assignments, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>	
+<% end %>

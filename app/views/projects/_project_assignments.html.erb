@@ -1,0 +1,45 @@
+<h3>Project Assignments</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Person</th>
+      <th>Options</th>
+      <th>&nbsp;&nbsp;
+        <%= link_to(new_assignment_path(:id => @project.id), :class => 'button tiny radius primary') do %>
+          <i class="fa fa-user"></i>
+          &nbsp;Add New Person
+        <% end %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @project_assignments.each do |assignment| %>
+      <tr>
+        <td>
+					<%= link_to assignment.user.proper_name, user_path(assignment.user) %>
+				</td>
+        <td colspan="2">
+					<% if assignment.active %>
+						<%= link_to(edit_assignment_path(assignment, status: 'deactivate_prj'), class: 'button tiny radius secondary') do %>
+              <i class="fa fa-bolt"></i>
+              &nbsp;Make Inactive
+            <% end %>
+					<% else %>
+						<%= link_to(edit_assignment_path(assignment, status: 'activate_prj'), class: 'button tiny radius success') do %>
+            <i class="fa fa-bolt"></i>
+              &nbsp;Make Active&nbsp;&nbsp;
+            <% end %>
+					<% end %>
+					<%= link_to(assignment_path(assignment), method: 'delete', data: { confirm: "Are you sure you want to destroy this assignment?" }, class: 'button tiny radius alert') do %>
+            <i class="fa fa-times"></i>
+            &nbsp;Destroy Assignment
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @project_assignments, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+
+
+<%# link_to 'Assign New Person', new_assignment_path(:id => @project.id), :class => 'btn btn-small btn-primary' %>

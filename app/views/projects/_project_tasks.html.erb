@@ -1,0 +1,32 @@
+<h3>Project Tasks</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+			<th>Done</th>
+      <th>Name</th>
+      <th>Due Date</th>
+			<th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @project_tasks.each do |task| %>
+      <tr>
+        <% if task.status == 'Completed' %>
+          <td class="centered"><%= image_tag("icons/check_green.gif") %></td>
+        <% else %>
+				  <td class="centered"><%= link_to(image_tag("icons/check_black.gif"), edit_task_path(task, status: 'completed', from: 'project')) %></td>
+        <% end %>
+        <td><%= link_to task.name, task_path(task) %></td>
+				<td><%= task.due_on.strftime("%m/%d/%y") %></td>
+        <td><%= raw(task_label(task.status)) %></td>
+        <!-- see note in _task_details for comments on raw() -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @project_tasks, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+
+<%= link_to(new_task_path(project_id: @project.id), class: 'button tiny radius') do %>
+  <i class="fa fa-clipboard"></i>
+  &nbsp;Add New Task
+<% end %>

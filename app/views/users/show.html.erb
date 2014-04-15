@@ -1,0 +1,13 @@
+
+<div class="row">
+  <div class="small-7 columns">
+    <%= render :partial => "user_details" %>
+  </div>
+  <div class="small-5 columns">
+    <%= render :partial => "created_tasks" unless @created_tasks.empty?%>
+    <%= render :partial => "completed_tasks" unless @completed_tasks.empty? %>
+  </div>
+</div>
+
+<!-- Add buttons to list all, edit project or destroy user -->
+<%= render :partial => "user_list_edit_destroy" %>

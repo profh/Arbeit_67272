@@ -1,0 +1,28 @@
+<%= simple_nested_form_for @project, :html => { :class => 'form-horizontal' } do |project_form| %>
+	<div class="row">
+		<div class="small-7 columns">
+			<fieldset>
+		    <legend><%= controller.action_name.capitalize %> Project</legend>
+					<%= render "project_fields", :f => project_form %>
+		  </fieldset>
+		</div>
+		<div class="small-5 columns">
+			<legend>Add some tasks to this project</legend>
+			<div id="project_tasks">
+				
+				<%= project_form.simple_fields_for :tasks do |task_form| %>
+					<%= render "task_fields", :f => task_form %>
+				<% end %> <!-- end of one tasks form -->
+				<p>
+					<%# project_form.link_to_add "Add Task", :tasks %>
+					<%= project_form.link_to_add(raw("<i class='fa fa-plus'></i>&nbsp;&nbsp;Add Task"), :tasks, class: 'button tiny radius') %>
+				</p>
+				
+			</div> <!-- end of project_tasks div -->
+		</div>
+	</div>
+	<div class="form-actions">
+    <%= project_form.submit nil, class: 'button radius' %>
+    <%= link_to 'Cancel', projects_path, class: 'button alert radius' %>
+  </div>
+<% end %>
