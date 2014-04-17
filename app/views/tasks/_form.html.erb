@@ -3,6 +3,7 @@
     <legend><%= controller.action_name.capitalize %> Task</legend>
 
 		<%= f.input :name, input_html: {class: "avg"} %>
+    <%# @task.due_on = humanize_date(@task.due_on) %>
 		<%= f.input :due_on, label: "Due by", as: :string, input_html: {:class => "avg datepicker"} %>				
 		<%= f.input :project_id, collection: Project.current.alphabetical, include_blank: true, input_html: {class: "avg"} %>
 		<%= f.input :priority, :collection => Task::PRIORITY_LIST, include_blank: true, input_html: {class: "avg"} %>

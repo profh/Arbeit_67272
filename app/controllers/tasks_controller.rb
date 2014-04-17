@@ -22,7 +22,7 @@ class TasksController < ApplicationController
 
   def edit
     authorize! :edit, @task
-    @task.due_on = humanize_date(@task.due_on) if params[:status].nil?
+    # @task.due_on = humanize_date(@task.due_on) if params[:status].nil?
     # in case this is a quick complete...
     if !params[:status].nil? && params[:status] == 'completed'
       @task.completed = true
@@ -41,7 +41,6 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     authorize! :create, @task
     @task.created_by = current_user.id
-    @task.due_on = convert_to_datetime(params[:task][:due_on])
     if @task.save
       # if saved to database
       flash[:notice] = "#{@task.name} has been created."
@@ -109,11 +108,16 @@ class TasksController < ApplicationController
   end
 
   private
+    def convert_due_on
+      params[:task][:due_on] = convert_to_date(params[:task][:due_on]) unless params[:task][:due_on].blank?
+    end
+
     def set_task
       @task = Task.find(params[:id])
     end
 
     def task_params
+      convert_due_on
       params.require(:task).permit(:name, :due_on, :due_string, :project_id, :completed, :completed_by, :created_by, :priority)  
     end
 end
