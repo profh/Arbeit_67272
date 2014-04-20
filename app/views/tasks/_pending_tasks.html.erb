@@ -19,7 +19,7 @@
 	      <tr>
 	        <td><%= raw(priority_label(task.priority)) %></td>
 	        <td><%= link_to task.name, task_path(task) %></td>
-					<td><%= link_to task.project.name, project_path(task.project) %></td>
+					<td><%= link_to task.project_name, project_path(task.project) %></td>
 	        <td><%= task.due_on.strftime("%m/%d/%y") %></td>
 	        <td>
 	          <%= link_to raw("<i class='fa fa-check'></i>&nbsp;&nbsp;Complete Task"), edit_task_path(task, status: 'completed'), :class => 'button radius tiny' %>
