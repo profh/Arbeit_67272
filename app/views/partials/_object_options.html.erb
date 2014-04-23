@@ -11,7 +11,7 @@
     &nbsp;<%= "Edit #{opt}" %>
   <% end %>
   &nbsp;&nbsp;
-  <%= link_to(eval("#{model_name.pluralize}_path"), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{opt}"}, class: 'button radius alert') do %>
+  <%= link_to(eval("#{model_name}_path(object)"), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{opt}"}, class: 'button radius alert') do %>
     <i class="fa fa-trash-o"></i>
     &nbsp;<%= "Delete #{opt}" %>
   <% end %>
