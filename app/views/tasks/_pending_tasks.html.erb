@@ -1,33 +1,41 @@
-<h3>Pending Tasks
-  <%= link_to(new_task_path) do %>
-    &nbsp;&nbsp;<i class="fa fa-plus"></i>
-  <% end %>
-</h3>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Priority</th>
-      <th>Task</th>
-			<th>Project</th>
-			<th>Due Date</th>
-      <th>&nbsp;</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @pending_tasks.each do |task| %>
-			<% if can? :read, task %>
-	      <tr>
-	        <td><%= raw(priority_label(task.priority)) %></td>
-	        <td><%= link_to task.name, task_path(task) %></td>
-					<td><%= link_to task.project.name, project_path(task.project) %></td>
-	        <td><%= task.due_on.strftime("%m/%d/%y") %></td>
-	        <td>
-	          <%= link_to raw("<i class='fa fa-check'></i>&nbsp;&nbsp;Complete Task"), edit_task_path(task, status: 'completed'), :class => 'button radius tiny' %>
-	        </td>
-	      </tr>
-			<% end %>
-    <% end %>
-  </tbody>
-</table>
+<% if @pending_tasks.empty? %>
+  <h3>No Pending Tasks</h3>
 
-<%= will_paginate @pending_tasks, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+<% else %>
+
+  <h3>Pending Tasks
+    <%= link_to(new_task_path) do %>
+      &nbsp;&nbsp;<i class="fa fa-plus"></i>
+    <% end %>
+  </h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Priority</th>
+        <th>Task</th>
+        <th>Project</th>
+        <th>Due Date</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @pending_tasks.each do |task| %>
+        <% if can? :read, task %>
+          <tr>
+            <td><%= raw(priority_label(task.priority)) %></td>
+            <td><%= link_to task.name, task_path(task) %></td>
+            <td><%= link_to task.project.name, project_path(task.project) %></td>
+            <td><%= task.due_on.strftime("%m/%d/%y") %></td>
+            <td>
+              <%= link_to raw("<i class='fa fa-check'></i>&nbsp;&nbsp;Complete Task"), edit_task_path(task, status: 'completed'), :class => 'button radius tiny' %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= will_paginate @pending_tasks, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+  <br />
+<% end %>
+

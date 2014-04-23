@@ -1,21 +1,6 @@
-<div class="row">
-	<div class="small-8 columns">
-    <% if @current_projects.empty? %>
-      <h3>No Current Projects</h3>
-    <% else %>
-      <h3>Current Projects</h3>
-      <%= render :partial => "current_projects" %>
-    <% end %>
-	</div>
-  <!-- <div class="small-1 columns">&nbsp;</div> -->
-	<div class="small-4 columns">
-		<%= render :partial => "past_projects" unless @past_projects.empty? %>
-	</div>
-</div>
 
-<!-- Add a button for new projects -->
-<%= link_to(new_project_path, class: "button radius") do %>
-  <i class="fa fa-plus"></i>
-  &nbsp;Add a New Project
-<% end %>
+<%= render partial: "partials/index_structure", locals: {model_name: "project", 
+                                                         primary: "current_projects", 
+                                                         secondary: nil, 
+                                                         sidebar: "past_projects"} %>
 
