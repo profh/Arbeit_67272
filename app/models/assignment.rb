@@ -1,4 +1,6 @@
 class Assignment < ActiveRecord::Base
+  include ArbeitHelpers
+
   # Relationships
   belongs_to :user
   belongs_to :project
@@ -28,10 +30,7 @@ class Assignment < ActiveRecord::Base
   
   private
   def user_is_active_in_system
-    all_active_users = User.active.to_a.map{|u| u.id}
-    unless all_active_users.include?(self.user_id)
-      errors.add(:user_id, "is not an active user in the system")
-    end
+    is_active_in_system(:user)
   end
   
   def project_is_current_in_system
