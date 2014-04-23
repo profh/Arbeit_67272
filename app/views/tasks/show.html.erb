@@ -7,7 +7,8 @@
   </div>
 </div>
 
-<!-- Add buttons to list all, edit project or destroy project -->
-<%= render :partial => "task_list_edit_destroy" %>
+<!-- Add buttons to list all, edit project or destroy task -->
+<%= render partial: "partials/object_options", locals: {model_name: "task", object: @task}  %>
+
 
 
