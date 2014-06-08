@@ -11,6 +11,12 @@ class Project < ActiveRecord::Base
   # allow tasks to be nested within project
   accepts_nested_attributes_for :tasks, reject_if: ->(task) { task[:name].blank? }, allow_destroy: true
   
+  # Delegations
+  delegate :name, to: :domain, prefix: true
+  delegate :name, to: :manager, prefix: true
+  delegate :proper_name, to: :manager, prefix: true
+
+
   # Scopes
   scope :alphabetical, -> { order("name") }
   scope :current,      -> { where("start_date <= ? and (end_date > ? or end_date is null)", Date.today, Date.today) }

@@ -3,7 +3,7 @@
 </h3><br>
 
 <p>
-  <b>Project</b>: <%= link_to @task.project.name, project_path(@task.project) %>
+  <b>Project</b>: <%= link_to @task.project_name, project_path(@task.project) %>
 </p>
 
 <p>
@@ -21,7 +21,7 @@
 
 <% unless @task.creator.nil? %>
 	<p>
-	  <b>Created by</b>: <%= link_to @task.creator.proper_name, user_path(@task.creator) %>
+	  <b>Created by</b>: <%= link_to @task.creator_proper_name, user_path(@task.creator) %>
 	</p>
 <% end %>
 
@@ -36,7 +36,7 @@
 
 <% unless @task.completer.nil?  %>
 	<p>
-	  <b>Completed by:</b> <%= link_to @task.completer.proper_name, user_path(@task.completer) %>
+	  <b>Completed by:</b> <%= link_to @task.completer_proper_name, user_path(@task.completer) %>
 	</p>
 <% end %>
 

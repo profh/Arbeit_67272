@@ -6,6 +6,11 @@ class Task < ActiveRecord::Base
   belongs_to :completer, class_name: "User", foreign_key: "completed_by"
   has_many :assignments, through: :project
 
+  # Delegations
+  delegate :name, to: :project, prefix: true
+  delegate :proper_name, to: :creator, prefix: true
+  delegate :proper_name, to: :completer, prefix: true
+
   
   PRIORITY_LIST = [ ["High", 1], ["Med", 2], ["Low", 3], ["Who cares?", 4] ]
   
