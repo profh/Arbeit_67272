@@ -1,6 +1,7 @@
 <% if assignments.empty? %>
   <p><em>There are no <%= state %> assignments at this time.</em></p>
 <% else %>
+<h2><%= state.capitalize %> Assignments</h2>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -30,3 +31,4 @@
 </table>
 <%= will_paginate assignments, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
 <% end %>
+<p>&nbsp;</p>

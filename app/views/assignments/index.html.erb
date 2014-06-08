@@ -1,20 +1,5 @@
-<div class="row">
-  <div class="small-8 columns">
-    <h2>Active Assignments</h2>
-    <%= render :partial => "assignment_list", locals: {assignments: @active_assignments, state: 'active'} %>
-    <p>&nbsp;</p>
-    <h2>Inactive Assignments</h2>
-    <%= render partial: "assignment_list", locals: {assignments: @inactive_assignments, state: 'inactive'} %>
 
-  </div>
-  <!-- <div class="small-1 columns">&nbsp;</div> -->
-  <div class="small-4 columns">
-    &nbsp;
-  </div>
-</div>
-
-<!-- Add a button for new assignments -->
-<%= link_to(new_assignment_path, class: "button radius") do %>
-  <i class="fa fa-plus"></i>
-  &nbsp;Add a New Assignment
-<% end %>
+<%= render partial: "partials/index_structure", locals: {model_name: "assignment", 
+                                                         primary: "active_assignments", 
+                                                         secondary: "inactive_assignments", 
+                                                         sidebar: nil} %>

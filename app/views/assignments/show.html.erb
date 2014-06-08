@@ -21,7 +21,7 @@
 </div>
 
 <!-- Add buttons to list all, edit project or destroy assignment -->
-<%= render :partial => "assignment_list_edit_destroy" %>
+<%= render partial: "partials/object_options", locals: {model_name: "assignment", object: @assignment}  %>
 
 
 

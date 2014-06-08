@@ -10,5 +10,4 @@
 </div>
 
 <!-- Add buttons to list all, edit project or destroy project -->
-<%= render :partial => "project_list_edit_destroy" %>
-
+<%= render partial: "partials/object_options", locals: {model_name: "project", object: @project}  %>
