@@ -27,6 +27,7 @@ gem 'font-awesome-sass-rails', '3.0.2.2'
 gem 'jquery-ui-rails', '4.1.1'
 gem 'cancancan', '1.7.0'
 gem 'validates_timeliness', '3.0.14'
+gem 'time_date_helpers', '0.0.2'
 
 # Additional gems that are very useful in Rails development
 group :development do
