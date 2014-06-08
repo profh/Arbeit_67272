@@ -1,4 +1,5 @@
 class Project < ActiveRecord::Base
+  include ArbeitHelpers
   
   # Relationships
   has_many :tasks
@@ -44,10 +45,7 @@ class Project < ActiveRecord::Base
   
   private
   def domain_is_active_in_system
-    all_active_domains = Domain.active.to_a.map{|d| d.id}
-    unless all_active_domains.include?(self.domain_id)
-      errors.add(:domain_id, "is not an active domain in the system")
-    end
+    is_active_in_system(:domain)
   end
 
   def remove_incomplete_tasks
