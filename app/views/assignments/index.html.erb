@@ -1,10 +1,11 @@
 <div class="row">
   <div class="small-8 columns">
     <h2>Active Assignments</h2>
-    <%= render :partial => "active_assignments" %>
+    <%= render :partial => "assignment_list", locals: {assignments: @active_assignments, state: 'active'} %>
     <p>&nbsp;</p>
     <h2>Inactive Assignments</h2>
-    <%= render :partial => "inactive_assignments" %>
+    <%= render partial: "assignment_list", locals: {assignments: @inactive_assignments, state: 'inactive'} %>
+
   </div>
   <!-- <div class="small-1 columns">&nbsp;</div> -->
   <div class="small-4 columns">
