@@ -11,9 +11,9 @@
     <% @project_tasks.each do |task| %>
       <tr>
         <% if task.status == 'Completed' %>
-          <td class="centered"><%= link_to(image_tag("icons/check_green.gif"), ajax_incomplete_path(task), remote: true, method: 'patch', class: 'ajax_task') %></td>
+          <td class="centered"><%= link_to(image_tag("icons/check_green.gif"), toggle_path(task, status: 'incomplete'), remote: true, method: 'patch') %></td>
         <% else %>
-          <td class="centered"><%= link_to(image_tag("icons/check_black.gif"), ajax_complete_path(task), remote: true, method: 'patch', class: 'ajax_task') %></td>
+          <td class="centered"><%= link_to(image_tag("icons/check_black.gif"), toggle_path(task, status: 'complete'), remote: true, method: 'patch') %></td>
         <% end %>
         <td><%= link_to task.name, task_path(task) %></td>
         <td><%= task.due_on.strftime("%m/%d/%y") %></td>

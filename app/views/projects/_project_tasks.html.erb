@@ -1,6 +1,8 @@
 <h3>Project Tasks</h3>
+<!-- Adding remote call in partial to toggle tasks -->
 <%= render partial: "task_list_for_project" %>
 
+<!-- Adding remote call here so form pops up and loads new tasks w/o refresh -->
 <%= link_to(new_task_path(project_id: @project.id), id: 'new_task_link', class: 'button tiny radius', remote: true) do %>
   <i class="fa fa-clipboard"></i>
   &nbsp;Add New Task

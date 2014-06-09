@@ -79,19 +79,18 @@ class TasksController < ApplicationController
     redirect_to tasks_url
   end
 
-  def ajax_complete
-    @task.completed = true
-    @task.completed_by = current_user.id
+  def toggle
+    if params[:status] == 'complete'
+      @task.completed = true
+      @task.completed_by = current_user.id
+    else
+      @task.completed = false
+      @task.completed_by = nil
+    end
     @task.save!
     @project_tasks = @task.project.tasks.chronological.by_priority.paginate(page: params[:page]).per_page(10)
   end
 
-  def ajax_incomplete
-    @task.completed = false
-    @task.completed_by = nil
-    @task.save!
-    @project_tasks = @task.project.tasks.chronological.by_priority.paginate(page: params[:page]).per_page(10)
-  end
   
   # ===================================
   # Two new methods to handle changing completed field

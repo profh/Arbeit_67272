@@ -1,7 +1,10 @@
 <%= simple_form_for @task, html: { :class => 'form-horizontal' }, remote: true do |f| %>
     <%= f.input :name, label: "Task", input_html: {class: "avg"} %>
     <%= f.input :due_on, label: "Due by", as: :string, input_html: {:class => "avg datepicker"} %>
+    
+    <!-- Note in this case that can't use @project; use params[:project_id] -->
     <%= f.input :project_id, as: :hidden, input_html: { value: params[:project_id] } %>
+
     <%= f.input :priority, :collection => Task::PRIORITY_LIST, include_blank: true, input_html: {class: "avg"} %>
     <p>&nbsp;</p>
     <div class="form-actions">
