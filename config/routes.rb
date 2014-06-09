@@ -28,6 +28,8 @@ Arbeit4::Application.routes.draw do
   # Named routes
   patch 'completed/:id' => 'tasks#complete', as: :complete
   patch 'incomplete/:id' => 'tasks#incomplete', as: :incomplete
+  patch 'ajax_complete/:id' => 'tasks#ajax_complete', as: :ajax_complete
+  patch 'ajax_incomplete/:id' => 'tasks#ajax_incomplete', as: :ajax_incomplete
   
   # Last route in routes.rb that essentially handles routing errors
   get '*a', to: 'errors#routing'

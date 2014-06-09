@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy, :complete, :incomplete]
+  # before_action :set_task, only: [:show, :edit, :update, :destroy, :ajax_complete, :ajax_incomplete, :complete, :incomplete]
+  before_action :set_task, except: [:index, :new, :create, :convert_due_on, :task_params, :set_task]
   before_action :check_login
   # authorize_resource
 
@@ -22,7 +23,6 @@ class TasksController < ApplicationController
 
   def edit
     authorize! :edit, @task
-    # @task.due_on = humanize_date(@task.due_on) if params[:status].nil?
     # in case this is a quick complete...
     if !params[:status].nil? && params[:status] == 'completed'
       @task.completed = true
@@ -43,8 +43,11 @@ class TasksController < ApplicationController
     @task.created_by = current_user.id
     if @task.save
       # if saved to database
-      flash[:notice] = "#{@task.name} has been created."
-      redirect_to @task # go to show task page
+      respond_to do |format|
+        format.html { redirect_to @task, notice: "#{@task.name} has been created." }
+        @project_tasks = @task.project.tasks.chronological.by_priority.paginate(page: params[:page]).per_page(10)
+        format.js
+      end
     else
       # return to the 'new' form
       render :action => 'new'
@@ -74,6 +77,20 @@ class TasksController < ApplicationController
     @task.destroy
     flash[:notice] = "Successfully removed #{@task.name} from Arbeit."
     redirect_to tasks_url
+  end
+
+  def ajax_complete
+    @task.completed = true
+    @task.completed_by = current_user.id
+    @task.save!
+    @project_tasks = @task.project.tasks.chronological.by_priority.paginate(page: params[:page]).per_page(10)
+  end
+
+  def ajax_incomplete
+    @task.completed = false
+    @task.completed_by = nil
+    @task.save!
+    @project_tasks = @task.project.tasks.chronological.by_priority.paginate(page: params[:page]).per_page(10)
   end
   
   # ===================================
