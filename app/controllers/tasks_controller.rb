@@ -5,9 +5,9 @@ class TasksController < ApplicationController
   # authorize_resource
 
   def index
-    @pending_tasks = Task.incomplete.chronological.paginate(:page => params[:page]).per_page(7)
+    @pending_tasks = Task.incomplete.chronological.includes(:project).paginate(:page => params[:page]).per_page(7)
     authorize! :index, @pending_tasks
-    @completed_tasks = Task.completed.by_completion_date.last(20)
+    @completed_tasks = Task.includes(:project).completed.by_completion_date.last(20)
     authorize! :index, @completed_tasks
   end
 

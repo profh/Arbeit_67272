@@ -6,7 +6,7 @@ class HomeController < ApplicationController
       project_ids = @projects.map(&:id)
       
       # get my incomplete tasks
-      @incomplete_tasks = Task.by_priority.incomplete.map{|task| task if project_ids.include?(task.project_id)}
+      @incomplete_tasks = Task.includes(:project).by_priority.incomplete.map{|task| task if project_ids.include?(task.project_id)}
       
       # get my completed tasks
       @completed_tasks = Task.by_name.completed.map {|task| task if project_ids.include?(task.project_id) }

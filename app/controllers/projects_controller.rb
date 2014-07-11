@@ -11,7 +11,7 @@ class ProjectsController < ApplicationController
   def show
     authorize! :read, @project
     @project_tasks = @project.tasks.chronological.by_priority.paginate(page: params[:page]).per_page(10)
-    @project_assignments = @project.assignments.by_user.paginate(page: params[:page]).per_page(8)
+    @project_assignments = @project.assignments.includes(:user).by_user.paginate(page: params[:page]).per_page(8)
   end
 
   def new
