@@ -39,6 +39,7 @@ group :development do
   gem 'wirble', '0.1.3'
   gem 'hirb', '0.7.1'
   gem 'faker', '1.3.0'
+  gem 'bullet', '4.11.3'
 end
 
 # Gems used only in testing
