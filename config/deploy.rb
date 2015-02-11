@@ -42,3 +42,4 @@ namespace :deploy do
 end
 
 before "deploy:assets:precompile", "deploy:symlink_shared"
+after "deploy:symlink_shared", "deploy:migrations"
