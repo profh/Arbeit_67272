@@ -27,3 +27,6 @@
 
 # Ignore the coverage directory
 /coverage
+
+# Ignore the settings file
+/config/settings.yml
