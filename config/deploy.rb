@@ -36,10 +36,9 @@ namespace :deploy do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
   task :symlink_shared do
-    # full path needs to be set up; use for security purposes in later deploys
     run "ln -s /home/deploy/apps/arbeit/shared/settings.yml /home/deploy/apps/arbeit/releases/#{release_name}/config/"
   end
 end
 
 before "deploy:assets:precompile", "deploy:symlink_shared"
-after "deploy:symlink_shared", "deploy:migrations"
+after "deploy:symlink_shared", "deploy:migrate"
