@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Arbeit4::Application.config.secret_key_base = 'aeb977de013ade650b97e0aa5246813591104017871a7753fe186e9634c9129b367306606878985c759ca4fddd17d955207011bb855ef01ed414398b4ac8317b'
+Arbeit4::Application.config.secret_key_base = SETTINGS[:secret_key_base]

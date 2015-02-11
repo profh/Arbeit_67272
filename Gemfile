@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 
 # Gems rails wants automatically
-gem 'rails', '4.0.3'
-gem 'sqlite3', '1.3.9'
+gem 'rails', '4.0.13'
 gem 'sass-rails', '4.0.2'
 gem 'uglifier', '2.5.0'
 gem 'coffee-rails', '4.0.1'
@@ -31,6 +30,7 @@ gem 'time_date_helpers', '0.0.2'
 
 # Additional gems that are very useful in Rails development
 group :development do
+  gem 'sqlite3', '1.3.9'
   gem 'quiet_assets', '1.0.2'
   gem 'thin', '1.6.2'
   gem 'better_errors', '1.1.0'
@@ -39,10 +39,12 @@ group :development do
   gem 'wirble', '0.1.3'
   gem 'hirb', '0.7.1'
   gem 'faker', '1.3.0'
+  gem 'capistrano', '2.15.5'
 end
 
 # Gems used only in testing
 group :test do
+  gem 'sqlite3', '1.3.9'
   gem 'shoulda', '3.5.0'
   gem 'shoulda-matchers', '2.5.0'
   gem 'factory_girl_rails', '4.4.1'
@@ -50,4 +52,8 @@ group :test do
   gem 'simplecov', '0.8.2'
   gem 'turn', '0.9.6'
   gem 'single_test', '0.6.0'
+end
+
+group :production do
+  gem 'pg'
 end

@@ -1,0 +1,15 @@
+# tokens and cookies configurations
+secret_key_base: 'SECRET TOKEN GOES HERE'
+session_name: 'SESSION NAME GOES HERE'
+
+# database configurations
+dev_database: 'DB NAME GOES HERE'
+test_database: 'DB NAME GOES HERE'
+production_database: 'DB NAME GOES HERE'
+db_user: 'DB USER GOES HERE'
+db_password: 'DB PSWD GOES HERE'
+
+# mailer configurations
+mailer_service: 'MAILER SERVICE GOES HERE'
+mailer_user: 'MAILER USER GOES HERE'
+mailer_password: 'MAILER PASSWORD GOES HERE'
