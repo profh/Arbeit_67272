@@ -1,6 +1,6 @@
 require 'bundler/capistrano'
 
-server 'mousedata.link', :web, :app, :db, primary: true
+server 'cmuisprojects.org', :web, :app, :db, primary: true
 
 set :application, 'arbeit'
 set :user, 'deploy'
