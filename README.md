@@ -1,4 +1,4 @@
-Arbeit 2014 :: 67-272
+Arbeit - Rails 4 :: 67-272
 ===
 This is the current version of the Arbeit project using Rails 4.  It was originally conceived as an excuse to play around with the awesome Chronic gem and requires this gem to run.  It is currently being used to demonstrate some more advanced features in Rails, introduces multi-model forms, and uses some jQuery.  Refactoring is another major teaching objective with this project and there are some obvious code smells we will deal with later.  All said, it is clearly a work in progress and additional features will be added over the remainder of the semester.  
 
