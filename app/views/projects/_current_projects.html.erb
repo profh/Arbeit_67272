@@ -14,7 +14,7 @@
 	      <tr>
 	        <td><%= link_to project.name, project_path(project) %></td>
 					<td><%= project.start_date.strftime("%b %d, %Y") %></td>
-	        <td><%= project.end_date.strftime("%b %d, %Y") %></td>
+	        <td><%= project.end_date.nil? ? "TBD" : project.end_date.strftime("%B %d, %Y") %></td>
 					<td class="centered"><%= project.assignments.active.size %></td>
 	        <td>
 						<%= link_to(new_assignment_path(id: project.id, source: 'project'), class: 'button tiny radius secondary') do %>
