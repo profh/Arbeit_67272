@@ -3,9 +3,12 @@ namespace :db do
   # creating a rake task within db namespace called 'populate'
   # executing 'rake db:populate' will cause this script to run
   task :populate => :environment do
-    # Invoke rake db:migrate just in case...
+    # Reset the databases completely
+    Rake::Task['db:drop'].invoke
+    Rake::Task['db:create'].invoke
     Rake::Task['db:migrate'].invoke
-    
+    Rake::Task['db:test:prepare'].invoke
+
     # Need the faker gem to make this work
     # Docs at: http://faker.rubyforge.org/rdoc/
     require 'faker'
