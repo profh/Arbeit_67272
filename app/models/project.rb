@@ -69,6 +69,7 @@ class Project < ActiveRecord::Base
   def end_project_instead_of_destroy
     if !destroyable.nil? && !destroyable
       end_project_now
+      @destroyable = nil
     end
   end
 end

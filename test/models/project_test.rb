@@ -93,6 +93,16 @@ class ProjectTest < ActiveSupport::TestCase
       destroy_assignments
     end
 
+    should "make assignments inactive when project ends" do
+      create_assignments
+      create_tasks
+      assert_equal 1, @bookmanager.assignments.inactive.count
+      @bookmanager.end_project_now
+      assert_equal 3, @bookmanager.assignments.inactive.count
+      destroy_tasks
+      destroy_assignments
+    end
+
     should "not make inactive because of an improper edit" do
       create_assignments
       create_tasks
@@ -107,15 +117,6 @@ class ProjectTest < ActiveSupport::TestCase
       assert_equal 1, @bookmanager.tasks.incomplete.count
     end
 
-    should "make assignments inactive when project ends" do
-      create_assignments
-      create_tasks
-      assert_equal 1, @bookmanager.assignments.inactive.count
-      @bookmanager.end_project_now
-      assert_equal 3, @bookmanager.assignments.inactive.count
-      destroy_tasks
-      destroy_assignments
-    end
   end
 end
 
