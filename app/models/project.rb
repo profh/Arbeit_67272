@@ -1,5 +1,7 @@
 class Project < ActiveRecord::Base
-  
+  # Additional accessors
+  attr_reader :destroyable
+
   # Relationships
   has_many :tasks
   has_many :assignments
@@ -24,10 +26,11 @@ class Project < ActiveRecord::Base
     
   # Callbacks
   before_destroy :is_destroyable?
-  after_rollback :end_project_now
+  after_rollback :end_project_instead_of_destroy
 
   def is_destroyable?
-    self.tasks.completed.empty?
+    @destroyable = self.tasks.completed.empty?
+    @destroyable
   end
   
   def end_project_now
@@ -61,5 +64,11 @@ class Project < ActiveRecord::Base
   def set_project_end_date_to_today
     self.end_date = Date.today
     self.save!
+  end
+
+  def end_project_instead_of_destroy
+    if !destroyable.nil? && !destroyable
+      end_project_now
+    end
   end
 end
