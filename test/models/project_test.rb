@@ -93,6 +93,20 @@ class ProjectTest < ActiveSupport::TestCase
       destroy_assignments
     end
 
+    should "not make inactive because of an improper edit" do
+      create_assignments
+      create_tasks
+      assert_nil @bookmanager.end_date
+      assert_equal 1, @bookmanager.tasks.incomplete.count
+      @bookmanager.start_date = nil
+      deny @bookmanager.valid?
+      # try to save the invalid record; see that it is not saved (rollback)
+      deny @bookmanager.save
+      # verify that the rollback did not end the project or remove tasks
+      assert_nil @bookmanager.end_date
+      assert_equal 1, @bookmanager.tasks.incomplete.count
+    end
+
     should "make assignments inactive when project ends" do
       create_assignments
       create_tasks
