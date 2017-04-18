@@ -32,7 +32,7 @@ gem 'time_date_helpers', '0.0.2'
 # Additional gems that are very useful in Rails development
 group :development do
   gem 'quiet_assets', '1.0.2'
-  gem 'thin', '1.6.2'
+  gem 'thin', '1.7.0'
   gem 'better_errors', '1.1.0'
   gem 'binding_of_caller', '0.7.2'
   gem 'meta_request', '0.2.8'
